@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Web Socket Test
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+<script>
+  const url = `ws://127.0.0.1:8030`;
+  const socket = io(url); // 初始化socket
+  socket.on('connect', () => {
+    console.log('链接成功');
+    socket.emit('events', { user: 1 });
+    socket.on('events', (data) => {
+      console.log(data);
+    });
+    socket.on('hello', (data) => {
+      console.log(data);
+    });
+  });
+</script>
